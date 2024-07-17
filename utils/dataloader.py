@@ -9,9 +9,9 @@ from torch.utils.data.dataset import Dataset
 from utils.utils import cvtColor, preprocess_input
 
 
-class DeeplabDataset(Dataset):
+class SegmentationDataset(Dataset):
     def __init__(self, annotation_lines, input_shape, num_classes, train, dataset_path):
-        super(DeeplabDataset, self).__init__()
+        super(SegmentationDataset, self).__init__()
         self.annotation_lines   = annotation_lines
         self.length             = len(annotation_lines)
         self.input_shape        = input_shape
@@ -155,7 +155,7 @@ class DeeplabDataset(Dataset):
 
 
 # DataLoader中collate_fn使用
-def deeplab_dataset_collate(batch):
+def seg_dataset_collate(batch):
     images      = []
     pngs        = []
     seg_labels  = []

@@ -6,11 +6,7 @@
 @Project -> : SETR-pytorch$
 ==================================================================================
 """
-import logging
-import math
 import os
-import numpy as np
-import torch
 from torch import nn
 from einops import rearrange
 from nets.Transformer import TransModel2d, TransConfig
@@ -36,21 +32,18 @@ class Encoder2D(nn.Module):
         self.is_segmentation = is_segmentation
 
     def forward(self, x):
-        ## x:(b, c, w, h)
         b, c, h, w = x.shape
-        assert self.config.in_channels == c, "in_channels != 输入图像channel"
+        # assert self.config.in_channels == c, "in_channels != 输入图像channel"
         p1 = self.patch_size[0]
         p2 = self.patch_size[1]
-
-        if h % p1 != 0:
-            print("请重新输入img size 参数 必须整除")
-            os._exit(0)
-        if w % p2 != 0:
-            print("请重新输入img size 参数 必须整除")
-            os._exit(0)
+        # if h % p1 != 0:
+        #     print("请重新输入img size 参数 必须整除")
+        #     os._exit(0)
+        # if w % p2 != 0:
+        #     print("请重新输入img size 参数 必须整除")
+        #     os._exit(0)
         hh = h // p1
         ww = w // p2
-
         x = rearrange(x, 'b c (h p1) (w p2) -> b (h w) (p1 p2 c)', p1=p1, p2=p2)
 
         encode_x = self.bert_model(x)[-1]  # 取出来最后一层
@@ -141,9 +134,9 @@ class SETR(nn.Module):
         x = self.decoder_2d(x)
         return x
 
-class Vit(nn.Module):
+class VIT(nn.Module):
     def __init__(self, num_classes, backbone="vit", pretrained=True):
-        super(Vit, self).__init__()
+        super(VIT, self).__init__()
         if backbone == "vit":
             config = TransConfig(patch_size=(32, 32), in_channels=1,
                                  out_channels=10, sample_rate=4,

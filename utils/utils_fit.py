@@ -1,7 +1,7 @@
 import os
 
 import torch
-from nets.deeplabv3_training import (CE_Loss, Dice_loss, Focal_Loss,
+from nets.model_training import (CE_Loss, Dice_loss, Focal_Loss,
                                      weights_init)
 from tqdm import tqdm
 
