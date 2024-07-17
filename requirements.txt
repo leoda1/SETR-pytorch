@@ -1,0 +1,10 @@
+torch
+torchvision
+tensorboard
+scipy
+numpy
+matplotlib
+opencv_python
+tqdm
+Pillow
+h5py
