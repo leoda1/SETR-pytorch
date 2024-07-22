@@ -60,10 +60,10 @@ class setr(object):
         #-------------------------------#
         #   载入模型与权值
         #-------------------------------#
-        self.net = SETR(num_classes=self.num_classes, backbone=self.backbone, pretrained=False)
+        self.net = SETR(num_classes=self.num_classes, backbone=self.backbone, pretrained=True)
 
         device      = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.net.load_state_dict(torch.load(self.model_path, map_location=device))
+        self.net.load_state_dict(torch.load(self.model_path, map_location=device), strict=False)
         self.net    = self.net.eval()
         print('{} model, and classes loaded.'.format(self.model_path))
         if not onnx:

@@ -21,7 +21,7 @@ if __name__ == "__main__":
                     "tvmonitor"]
     VOCdevkit_path = 'VOCdevkit'
 
-    image_ids = open(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Segmentation/val.txt"), 'r').read.splitline()
+    image_ids = open(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Segmentation/val.txt"), 'r').read().splitlines()
     gt_dir = os.path.join(VOCdevkit_path, "VOC2007/SegmenationClass/")
     miou_out_dir = "miou_out"
     pred_dir = os.path.join(miou_out_dir, 'detection-results')
